@@ -1,0 +1,29 @@
+[Unit]
+Description=CNS Feeder — the bus feeds the room (real chatter for the corpus)
+After=network.target elephant-roomd.service
+Wants=elephant-roomd.service
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+[Service]
+Type=simple
+WorkingDirectory=/home/eileen/projects/fleet-rooms
+ExecStart=/usr/bin/python3 cns_feeder.py --post-to http://127.0.0.1:4073/ingest --interval 5
+Restart=always
+RestartSec=3
+MemoryMax=64M
+MemoryHigh=48M
+CPUQuota=20%
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+PrivateDevices=true
+RestrictNamespaces=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+
+[Install]
+WantedBy=default.target

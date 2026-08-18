@@ -1,0 +1,29 @@
+[Unit]
+Description=Roundtable — DeepInfra models play together in the bridge room
+After=network.target elephant-roomd.service
+Wants=elephant-roomd.service
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+[Service]
+Type=simple
+WorkingDirectory=/home/eileen/projects/fleet-rooms
+Environment=DEEPINFRA_API_KEY=zYuVMGC4JySULP2waqKW35jI42TjaPkl
+ExecStart=/usr/bin/python3 roundtable.py --interval 600
+Restart=always
+RestartSec=10
+MemoryMax=64M
+CPUQuota=20%
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+PrivateDevices=true
+RestrictNamespaces=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+
+[Install]
+WantedBy=default.target
