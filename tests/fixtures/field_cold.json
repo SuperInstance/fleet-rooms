@@ -1,0 +1,3 @@
+{"warmth": -0.6, "kappa": 0.4, "map_temperature": 0.2,
+ "dials": {"mood": -0.5, "volume": 0.1, "earnestness": 0.3, "cynicism": 0.6,
+           "joke_landing": -0.2, "panic": 0.05, "presence": 0.15}}
