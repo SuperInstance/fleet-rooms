@@ -50,3 +50,13 @@
 - fleet-doctor: 7/7 PASS incl. canary stampede → /rings
 - roomd gained /ingest + /rings (elephant 5f42803); bridge renders quiet rooms neutral (terrain 3d0799d)
 - Reboot test pending Captain's go (it would bounce the whole box)
+
+## 2026-08-18 ~09:50 — PHASE 3 (the leaps)
+- LANDED: zeitgeist writes the MUD (elephant 5d59dd7, /rooms/{name}/description, field-deterministic words)
+- LANDED: field-log corpus (elephant 4c2c7bf, --field-log bounded+rotated, live via unit)
+- LANDED: boat_bridge (fleet-rooms 88f3ce7) — NMEA day replayed → the-boat-EILEEN room live in roomd
+- LANDED: Wesley's Personal-Elephant (wesley-cns-adapter dc2d3c5+b827c53) — divergence = observable of relationship
+- LANDED: EKG strip (cns-echo ae1766f, --mood-log, 183 green)
+- LANDED: spatial_registry_loader (terrain b0abd03) — 33 rooms, 4 worlds, 66 portals, cross-world paths oracle-verified, 255 green
+- LANDED: eisenstein D6 front (eisenstein 4a45dcb) — propagation-aware ring with front direction, bridge parity
+- IN FLIGHT: fleet-audio live sink (cpal, --features live); exocortex distiller trace_source=cns_spool
