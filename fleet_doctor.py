@@ -71,16 +71,24 @@ def main(argv=None) -> int:
         except Exception as e:
             results.append(check(f"{name} answers", False, str(e)))
 
-    # 3. canary ring: ingest a panic event into roomd, expect a USCP ring
+    # 3. canary ring: stampede a room, expect a panic ring in roomd's log
     if args.canary:
         try:
-            before = set(Path("/tmp/fleet-doctor-canary").glob("*"))
-            req = urllib.request.Request(
-                "http://127.0.0.1:4073/field", method="GET")  # recompute happens on GET
-            fetch_json("http://127.0.0.1:4073/field")
-            results.append(check("canary recomputed field", True))
+            canary = "doctor-canary"
+            for i in range(3):
+                req = urllib.request.Request(
+                    "http://127.0.0.1:4073/ingest",
+                    data=json.dumps({"room": canary, "author": f"canary-{i}",
+                                     "text": "!!! FIRE MAYDAY EMERGENCY ABANDON NOW !!!"}).encode(),
+                    headers={"Content-Type": "application/json"}, method="POST")
+                urllib.request.urlopen(req, timeout=3).read()
+            fetch_json("http://127.0.0.1:4073/field")   # recompute happens on GET
+            rings = fetch_json("http://127.0.0.1:4073/rings").get("rings", [])
+            hit = any(r.get("room") == canary and r.get("kind") == "panic" for r in rings)
+            results.append(check("canary panic ring registered", hit,
+                                 f"{len(rings)} rings logged"))
         except Exception as e:
-            results.append(check("canary", False, str(e)))
+            results.append(check("canary panic ring", False, str(e)))
 
     ok = all(results)
     print(f"\nfleet-doctor: {sum(results)}/{len(results)} pass")
