@@ -60,3 +60,10 @@
 - LANDED: spatial_registry_loader (terrain b0abd03) — 33 rooms, 4 worlds, 66 portals, cross-world paths oracle-verified, 255 green
 - LANDED: eisenstein D6 front (eisenstein 4a45dcb) — propagation-aware ring with front direction, bridge parity
 - IN FLIGHT: fleet-audio live sink (cpal, --features live); exocortex distiller trace_source=cns_spool
+
+## 2026-08-18 ~10:00 — PHASE 3 COMPLETE (all leaps)
+- fleet-audio 618e791: live cpal sink behind --features live (needs pkg-config+libasound2-dev to build)
+- exocortex-core c7f1c1f: distiller trace_source=cns_spool — ×50 traces → reflex, 51st answers from cache (203 green)
+- terrain b0abd03: 33 rooms / 4 worlds / 66 portals verified against registry oracle
+- eisenstein 4a45dcb: propagation-aware ring with D6 front
+- ALL PLAN LEAPS LANDED. Remaining: reboot acceptance test (needs Casey), dial training on accumulated corpus (needs days of field-log data), AIVDM once real AIS hardware feeds.
