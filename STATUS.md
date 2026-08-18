@@ -37,3 +37,8 @@
   endpoint needed.
 - This desk does not touch elephant / cns-echo / terrain / fleet-audio /
   eisenstein working trees — read-only for verification.
+
+## 2026-08-18 ~08:15 — PHASE 1 COMPLETE
+- roomd landed (elephant eec286f) — field truth-holder :4073, 249 tests green
+- cns-echo 6fbf226, terrain 612bf74, fleet-audio 4e1feb7 — all landed earlier
+- demo.sh 8acb394 — 9/9 PASS end-to-end acceptance
