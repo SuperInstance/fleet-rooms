@@ -1,0 +1,10 @@
+[Unit]
+Description=Fleet Doctor — the morning muster (organs check)
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/eileen/projects/fleet-rooms
+ExecStart=/usr/bin/python3 fleet_doctor.py --canary
+MemoryMax=64M
+NoNewPrivileges=true
