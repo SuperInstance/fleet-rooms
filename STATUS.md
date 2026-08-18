@@ -42,3 +42,11 @@
 - roomd landed (elephant eec286f) — field truth-holder :4073, 249 tests green
 - cns-echo 6fbf226, terrain 612bf74, fleet-audio 4e1feb7 — all landed earlier
 - demo.sh 8acb394 — 9/9 PASS end-to-end acceptance
+
+## 2026-08-18 ~08:50 — PHASE 2 COMPLETE
+- 5 hardened user units live: elephant-roomd, terrain-core, elephant-bridge, cns-echo, fleet-doctor(timer 15min)
+- Restart=always proven: kill -9 on roomd → back in seconds
+- Linger=yes: the room survives with nobody logged in
+- fleet-doctor: 7/7 PASS incl. canary stampede → /rings
+- roomd gained /ingest + /rings (elephant 5f42803); bridge renders quiet rooms neutral (terrain 3d0799d)
+- Reboot test pending Captain's go (it would bounce the whole box)
