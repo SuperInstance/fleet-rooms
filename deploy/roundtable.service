@@ -8,7 +8,7 @@ StartLimitIntervalSec=60
 [Service]
 Type=simple
 WorkingDirectory=/home/eileen/projects/fleet-rooms
-Environment=DEEPINFRA_API_KEY=zYuVMGC4JySULP2waqKW35jI42TjaPkl
+EnvironmentFile=/home/eileen/.config/fleet-env
 ExecStart=/usr/bin/python3 roundtable.py --interval 600
 Restart=always
 RestartSec=10
