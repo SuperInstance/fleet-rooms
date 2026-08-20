@@ -8,34 +8,31 @@ five mature repos into **one pipeline, one command**. Sibling of
 **Do not edit the other repos from here** — elephant, terrain, cns-echo,
 fleet-audio, eisenstein each have owners. This repo only reads their seams.
 
+<p align="center">
+  <img src="assets/images/hero-keel.jpg" width="720" alt="The keel lit from within: one amber spine carrying the whole dark hull." />
+</p>
+
+*The runtime keel — one brass spine, every organ hung from it in the dark.*
+
 ## The one pipeline (target state, phase 1)
 
+```mermaid
+flowchart TD
+    RM[rooms.mud] --> TC[terrain_core :4072]
+    TC --> SJ["scene.json — the compile contract"]
+    EIS["eisenstein hex_mud --json"] --> MJ["map.json — adjacency truth (exact ints)"]
+    MJ --> EL["elephant roomd :4073 — the field truth-holder<br/>DialBank · map_temperature · deadband<br/>GET /field · GET /rooms/{name}/field"]
+    EL -- "ring → USCP packet" --> INBOX[~/.hermes/cns_inbox]
+    EL -- "GET /field (poll)" --> EB["terrain elephant_bridge --poll<br/>POSTs deltas to :4072/field"]
+    EB -.-> SJ
+    INBOX --> CE["cns-echo --watch<br/>EchoSpace echoes the ring;<br/>its ring → USCP STATUS_REPORT → outbox"]
+    EL --> FS["field_score.py — the emitter<br/>reads :4073/field → JSONL MIDI bars"]
+    FS --> SPOOL[(spool dir)]
+    SPOOL --> FA["fleet-audio --spool --dials-endpoint :4073/field<br/>warmth→scale/velocity · presence→string pad<br/>panic→drums+tempo · joke_landing→guitar<br/>FeelPulse shapes gain live"]
+    FA --> WAV["out.wav — the room, heard"]
 ```
-rooms.mud ──► terrain_core :4072 ──► scene.json (the compile contract)
 
-eisenstein hex_mud --json ──► map.json (adjacency truth, exact ints)
-        │
-        ▼
-elephant roomd :4073  (NEW — the field truth-holder)
-   DialBank over each hex room · map_temperature · deadband
-   GET /field · GET /rooms/{name}/field
-   ring → USCP packet → ~/.hermes/cns_inbox
-        │                                   │
-        ▼                                   ▼
-terrain elephant_bridge --poll      cns-echo --watch
-(polls :4073/field,                 (echoes the ring; EchoSpace reads
-  POSTs deltas to :4072/field;      the bus stream; ITS ring →
-  index.html applies light/         USCP STATUS_REPORT → outbox)
-  weather/particles)                        │
-                                            ▼
-field_score.py (NEW, glue repo)  reads :4073/field → JSONL MIDI
-events → spool dir → fleet-audio --spool --dials-endpoint :4073/field
-   warmth→scale/velocity · presence→string pad · panic→drums+tempo
-   joke_landing→guitar flourish · FeelPulse shapes gain live
-        │
-        ▼
-   out.wav — the room, heard
-```
+_The keel: one truth-holder per quantity, everything reads the seams._
 
 Doctrine: one truth-holder per quantity (eisenstein→adjacency,
 elephant→field, terrain_core→scene, the bus→transport, fleet-audio→sound).
