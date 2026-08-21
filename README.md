@@ -111,3 +111,13 @@ end-to-end HTTP→spool run plus dead-endpoint survival.
 
 `deploy/fleet-doctor.service` + `.timer` (5 min) per plan §2 table, and
 `fleet-doctor.py` — the chain of command's morning muster.
+
+---
+
+## Gallery
+
+<p align="center">
+  <img src="assets/images/gallery-fleet-rooms.jpg" width="720" alt="The keel's rooms lit from within — every organ hung from the spine, every room a field felt one bar at a time." />
+</p>
+
+*The runtime keel and its rooms — one brass spine, every organ hung from it in the dark.*
